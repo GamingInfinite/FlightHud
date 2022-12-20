@@ -2,10 +2,11 @@ package net.torocraft.flighthud.components;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Vec3f;
 import net.torocraft.flighthud.Dimensions;
 import net.torocraft.flighthud.FlightComputer;
 import net.torocraft.flighthud.HudComponent;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class PitchIndicator extends HudComponent {
   private final Dimensions dim;
@@ -27,12 +28,9 @@ public class PitchIndicator extends HudComponent {
     float a = dim.yMid;
     float b = dim.xMid;
 
-    float roll = computer.roll * (CONFIG.pitchLadder_reverseRoll ? -1 : 1);
-
     if (CONFIG.pitchLadder_showRoll) {
       m.push();
       m.translate(b, a, 0);
-      m.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(roll));
       m.translate(-b, -a, 0);
     }
 
